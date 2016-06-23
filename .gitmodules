@@ -1,0 +1,18 @@
+[submodule "puppet/modules/ntp"]
+	path = puppet/modules/ntp
+	url = https://github.com/puppetlabs/puppetlabs-ntp.git
+[submodule "puppet/modules/firewall"]
+	path = puppet/modules/firewall
+	url = https://github.com/puppetlabs/puppetlabs-firewall.git
+[submodule "puppet/modules/accounts"]
+	path = puppet/modules/accounts
+	url = https://github.com/deric/puppet-accounts
+[submodule "puppet/modules/selinux"]
+	path = puppet/modules/selinux
+	url = https://github.com/jfryman/puppet-selinux.git
+[submodule "puppet/modules/sudo"]
+	path = puppet/modules/sudo
+	url = https://github.com/saz/puppet-sudo.git
+[submodule "puppet/modules/stdlib"]
+	path = puppet/modules/stdlib
+	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
