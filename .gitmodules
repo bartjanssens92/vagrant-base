@@ -16,3 +16,15 @@
 [submodule "puppet/modules/stdlib"]
 	path = puppet/modules/stdlib
 	url = https://github.com/puppetlabs/puppetlabs-stdlib.git
+[submodule "puppet/modules/rundeck"]
+	path = puppet/modules/rundeck
+	url = https://github.com/voxpupuli/puppet-rundeck.git
+[submodule "puppet/modules/inifile"]
+	path = puppet/modules/inifile
+	url = https://github.com/puppetlabs/puppetlabs-inifile
+[submodule "puppet/modules/java"]
+	path = puppet/modules/java
+	url = https://github.com/puppetlabs/puppetlabs-java.git
+[submodule "puppet/modules/archive"]
+	path = puppet/modules/archive
+	url = https://github.com/voxpupuli/puppet-archive.git
