@@ -5,6 +5,7 @@
 class roles::vps () {
 
   include ::profile_base
+  include ::profile_apache
 
 } # class roles::vps
 
