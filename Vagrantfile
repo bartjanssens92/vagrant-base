@@ -6,7 +6,8 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
-  config.vm.box = "centos-71-x64-vbox"
+  #config.vm.box = "centos-71-x64-vbox"
+  config.vm.box = "vStone/centos-7.x-puppet.3.x"
   config.ssh.insert_key = false
   # config.vm.box_check_update = false
   config.vm.synced_folder "puppet/hiera/data", "/etc/hiera"
