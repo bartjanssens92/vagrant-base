@@ -40,7 +40,7 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.define "vps" do |node|
-    node.vm.hostname = "vps.vagranttest.bbqnetwork.be"
+    node.vm.hostname = "vps"
     node.vm.network "private_network", ip: "100.10.40.10"
     node.vm.network "forwarded_port", guest: 80, host: 4480
     node.vm.network "forwarded_port", guest: 443, host: 4443

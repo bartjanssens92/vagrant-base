@@ -2,3 +2,14 @@
 role:
   - roles::vps
 
+profile_apache::vhosts:
+  test.%{fqdn}:
+    servername: test.bbqnetwork.be
+    serveraliases:
+      - testing.bbqnetwork.be
+    docroot: /var/vhosts/test
+    port: 80
+  bbqnetwork.%{fqdn}:
+    servername: bbqnetwork.be
+    docroot: /var/vhosts/bbqnetwork.be
+    port: 80
