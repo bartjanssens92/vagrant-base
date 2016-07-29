@@ -23,7 +23,7 @@ class profile_base (
   include ::sudo
   include ::sudo::configs
 
-  if ( $enable_firewall ) {
+  if ( str2bool($enable_firewall) ) {
     include ::profile_base::firewall
   } else {
     class { '::firewall':

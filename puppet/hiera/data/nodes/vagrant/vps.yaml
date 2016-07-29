@@ -3,7 +3,7 @@ role:
   - roles::vps
 
 # enable firewall
-profile_base::enable_firewall: false
+profile_base::enable_firewall: true
 
 ##########
 # Apache #
