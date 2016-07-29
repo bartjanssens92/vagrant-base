@@ -12,4 +12,4 @@ sudo::configs:
     priority: 10
 
 # Ignore the firewall here
-firewall::ensure: stopped
+profile_base::enable_firewall: false

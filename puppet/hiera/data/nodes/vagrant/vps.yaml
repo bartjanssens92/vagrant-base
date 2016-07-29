@@ -2,6 +2,12 @@
 role:
   - roles::vps
 
+# enable firewall
+profile_base::enable_firewall: false
+
+##########
+# Apache #
+##########
 profile_apache::vhosts:
   test.%{fqdn}:
     servername: test.bbqnetwork.be

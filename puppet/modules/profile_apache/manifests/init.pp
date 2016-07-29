@@ -57,4 +57,19 @@ class profile_apache (
 
   # Create the vhosts
   create_resources('apache::vhost', $vhosts)
+
+  # Add firewall rules
+  if ( $::profile_base::enable_firewall ) {
+    firewall { '006 Allow inbound on port 80 and 443 tcp':
+      dport  => [80,443],
+      proto  => tcp,
+      action => 'accept',
+    }
+
+    firewall { '006 Allow inbound on port 80 and 443 udp':
+      dport  => [80,443],
+      proto  => udp,
+      action => 'accept',
+    }
+  }
 }

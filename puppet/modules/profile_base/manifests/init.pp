@@ -15,13 +15,21 @@
 #
 class profile_base (
   $manage_users = 'hiera',
+  $enable_firewall = true,
 ) {
 
-  include ::firewall
   include ::selinux
   include ::ntp
   include ::sudo
   include ::sudo::configs
+
+  if ( $enable_firewall ) {
+    include ::profile_base::firewall
+  } else {
+    class { '::firewall':
+      ensure => stopped,
+    }
+  }
 
   if ( $manage_users == 'hiera' ) {
     $default_group_ = {
