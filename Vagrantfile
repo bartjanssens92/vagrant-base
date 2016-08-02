@@ -37,22 +37,22 @@ Vagrant.configure(2) do |config|
   config.vm.define "rundeck" do |node|
     node.vm.hostname = "rundeck.vagranttest.bbqnetwork.be"
     node.vm.network "private_network", ip: "100.10.20.11"
-    node.vm.network "forwarded_port", guest: 4440, host: 201140
-    node.vm.network "forwarded_port", guest: 4443, host: 201143
+    node.vm.network "forwarded_port", guest: 4440, host: 20114
+    node.vm.network "forwarded_port", guest: 4443, host: 20113
   end
 
   config.vm.define "vps" do |node|
     node.vm.hostname = "vps"
     node.vm.network "private_network", ip: "100.10.40.10"
-    node.vm.network "forwarded_port", guest: 80, host: 401080
-    node.vm.network "forwarded_port", guest: 443, host: 4010443
+    node.vm.network "forwarded_port", guest: 80, host: 40108
+    node.vm.network "forwarded_port", guest: 443, host: 40104
   end
 
   config.vm.define "hornetmq" do |node|
     node.vm.hostname = "hornetmq"
     node.vm.network "private_network", ip: "100.10.20.12"
-    node.vm.network "forwarded_port", guest: 80, host: 201280
-    node.vm.network "forwarded_port", guest: 443, host: 2012443
+    node.vm.network "forwarded_port", guest: 80, host: 20128
+    node.vm.network "forwarded_port", guest: 443, host: 20124
   end
 
 end
