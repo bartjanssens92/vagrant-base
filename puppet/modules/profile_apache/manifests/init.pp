@@ -12,7 +12,7 @@ class profile_apache (
   # Setup apache
   class { 'apache':
     default_mods           => true,
-    default_vhost          => true,
+    default_vhost          => false,
     docroot                => '/var/vhosts/default',
     default_charset        => 'utf-8',
     default_confd_files    => true,
