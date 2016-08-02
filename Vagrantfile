@@ -27,6 +27,8 @@ Vagrant.configure(2) do |config|
     puppet.options = "--environment 'vagrant'"
   end
 
+  # Node port forwarding:
+  # Use the last 2 cypers of the ip addr and then the port number
   config.vm.define "base" do |node|
     node.vm.hostname = "base"
     node.vm.network "private_network", ip: "100.10.20.10"
@@ -34,16 +36,23 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "rundeck" do |node|
     node.vm.hostname = "rundeck.vagranttest.bbqnetwork.be"
-    node.vm.network "private_network", ip: "100.10.20.10"
-    node.vm.network "forwarded_port", guest: 4440, host: 2440
-    node.vm.network "forwarded_port", guest: 4443, host: 2443
+    node.vm.network "private_network", ip: "100.10.20.11"
+    node.vm.network "forwarded_port", guest: 4440, host: 201140
+    node.vm.network "forwarded_port", guest: 4443, host: 201143
   end
 
   config.vm.define "vps" do |node|
     node.vm.hostname = "vps"
     node.vm.network "private_network", ip: "100.10.40.10"
-    node.vm.network "forwarded_port", guest: 80, host: 4480
-    node.vm.network "forwarded_port", guest: 443, host: 4443
+    node.vm.network "forwarded_port", guest: 80, host: 401080
+    node.vm.network "forwarded_port", guest: 443, host: 4010443
+  end
+
+  config.vm.define "hornetmq" do |node|
+    node.vm.hostname = "hornetmq"
+    node.vm.network "private_network", ip: "100.10.20.12"
+    node.vm.network "forwarded_port", guest: 80, host: 201280
+    node.vm.network "forwarded_port", guest: 443, host: 2012443
   end
 
 end
