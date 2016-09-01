@@ -32,6 +32,7 @@ Vagrant.configure(2) do |config|
   config.vm.define "base" do |node|
     node.vm.hostname = "base"
     node.vm.network "private_network", ip: "100.10.20.10"
+    config.vm.synced_folder "files/base", "/home/vagrant/base"
   end
 
   config.vm.define "rundeck" do |node|
@@ -53,6 +54,7 @@ Vagrant.configure(2) do |config|
     node.vm.network "private_network", ip: "100.10.20.12"
     node.vm.network "forwarded_port", guest: 80, host: 20128
     node.vm.network "forwarded_port", guest: 443, host: 20124
+    config.vm.synced_folder "files/hornetmq", "/home/vagrant/hornetmq"
   end
 
 end

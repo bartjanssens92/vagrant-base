@@ -1,0 +1,6 @@
+---
+role:
+  - roles::hornetmq
+
+# enable firewall
+#profile_base::enable_firewall: true
