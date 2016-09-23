@@ -57,4 +57,12 @@ Vagrant.configure(2) do |config|
     config.vm.synced_folder "files/hornetmq", "/home/vagrant/hornetmq"
   end
 
+  config.vm.define "lamp" do |node|
+    node.vm.hostname = "lamp"
+    node.vm.network "private_network", ip: "100.10.20.13"
+    node.vm.network "forwarded_port", guest: 80, host: 20108
+    node.vm.network "forwarded_port", guest: 443, host: 20104
+    config.vm.synced_folder "files/lamp", "/home/vagrant/lamp"
+  end
+
 end
