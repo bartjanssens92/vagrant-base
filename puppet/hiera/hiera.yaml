@@ -8,4 +8,4 @@
   - yaml
 
 :yaml:
-  :datadir: '/etc/hiera'
+  :datadir: '/etc/puppetlabs/puppet/data'

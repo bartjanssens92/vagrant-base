@@ -7,10 +7,13 @@
 # you're doing.
 Vagrant.configure(2) do |config|
   #config.vm.box = "centos-71-x64-vbox"
-  config.vm.box = "vStone/centos-7.x-puppet.3.x"
+  #config.vm.box = "vStone/centos-7.x-puppet.3.x"
+  config.vm.box = "arch-amd64-virtualbox"
   config.ssh.insert_key = false
   # config.vm.box_check_update = false
-  config.vm.synced_folder "puppet/hiera/data", "/etc/hiera"
+  config.vm.synced_folder "puppet/manifests", "/etc/puppetlabs/code/environments/vagrant/manifests"
+  config.vm.synced_folder "puppet/modules", "/etc/puppetlabs/code/environments/vagrant/modules"
+  config.vm.synced_folder "puppet/hiera", "/etc/puppetlabs/puppet"
 
   config.vm.provider "virtualbox" do |vb|
     #vb.gui = true
@@ -20,18 +23,20 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "puppet" do |puppet|
-    puppet.hiera_config_path = "puppet/hiera/hiera.yaml"
-    puppet.manifest_file = ""
-    puppet.manifests_path = "puppet/manifests/"
-    puppet.module_path = "puppet/modules"
-    puppet.options = "--environment 'vagrant'"
+    #puppet.hiera_config_path = "puppet/hiera/hiera.yaml"
+    #puppet.manifest_file = ""
+    #puppet.manifests_path = ["vms", "puppet/manifests/"]
+    #puppet.module_path = "puppet/modules"
+    #puppet.options = "--environment 'vagrant'"
+    puppet.environment = "vagrant"
+    puppet.environment_path = ["vm", "/etc/puppetlabs/code/environments"]
   end
 
   # Node port forwarding:
   # Use the last 2 cypers of the ip addr and then the port number
   config.vm.define "base" do |node|
     node.vm.hostname = "base"
-    node.vm.network "private_network", ip: "100.10.20.10"
+    node.vm.network "private_network", ip: "10.10.20.10"
     config.vm.synced_folder "files/base", "/home/vagrant/base"
   end
 

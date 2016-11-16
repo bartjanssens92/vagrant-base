@@ -18,7 +18,7 @@ class profile_base (
   $enable_firewall = true,
 ) {
 
-  include ::selinux
+  #include ::selinux
   include ::ntp
   include ::sudo
   include ::sudo::configs
