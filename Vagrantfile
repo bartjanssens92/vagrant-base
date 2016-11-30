@@ -6,8 +6,6 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
-  #config.vm.box = "centos-71-x64-vbox"
-  #config.vm.box = "vStone/centos-7.x-puppet.3.x"
   config.vm.box = "arch-amd64-virtualbox"
   config.ssh.insert_key = false
   # config.vm.box_check_update = false
@@ -30,6 +28,8 @@ Vagrant.configure(2) do |config|
     #puppet.options = "--environment 'vagrant'"
     puppet.environment = "vagrant"
     puppet.environment_path = ["vm", "/etc/puppetlabs/code/environments"]
+    #puppet.options = "--debug"
+    puppet.environment = "vagrant"
   end
 
   # Node port forwarding:
@@ -38,25 +38,19 @@ Vagrant.configure(2) do |config|
     node.vm.hostname = "base"
     node.vm.network "private_network", ip: "10.10.20.10"
     config.vm.synced_folder "files/base", "/home/vagrant/base"
-  end
-
-  config.vm.define "rundeck" do |node|
-    node.vm.hostname = "rundeck.vagranttest.bbqnetwork.be"
-    node.vm.network "private_network", ip: "100.10.20.11"
-    node.vm.network "forwarded_port", guest: 4440, host: 20114
-    node.vm.network "forwarded_port", guest: 4443, host: 20113
+    node.vm.network "forwarded_port", guest: 7272, host: 7272
   end
 
   config.vm.define "vps" do |node|
     node.vm.hostname = "vps"
-    node.vm.network "private_network", ip: "100.10.40.10"
-    node.vm.network "forwarded_port", guest: 80, host: 40108
-    node.vm.network "forwarded_port", guest: 443, host: 40104
+    node.vm.network "private_network", ip: "10.10.30.10"
+    node.vm.network "forwarded_port", guest: 80, host: 3080
+    node.vm.network "forwarded_port", guest: 443, host: 3080
   end
 
   config.vm.define "hornetmq" do |node|
     node.vm.hostname = "hornetmq"
-    node.vm.network "private_network", ip: "100.10.20.12"
+    node.vm.network "private_network", ip: "10.10.20.12"
     node.vm.network "forwarded_port", guest: 80, host: 20128
     node.vm.network "forwarded_port", guest: 443, host: 20124
     config.vm.synced_folder "files/hornetmq", "/home/vagrant/hornetmq"
@@ -64,7 +58,7 @@ Vagrant.configure(2) do |config|
 
   config.vm.define "lamp" do |node|
     node.vm.hostname = "lamp"
-    node.vm.network "private_network", ip: "100.10.20.13"
+    node.vm.network "private_network", ip: "10.10.20.13"
     node.vm.network "forwarded_port", guest: 80, host: 20108
     node.vm.network "forwarded_port", guest: 443, host: 20104
     config.vm.synced_folder "files/lamp", "/home/vagrant/lamp"
