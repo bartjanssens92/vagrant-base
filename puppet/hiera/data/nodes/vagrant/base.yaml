@@ -1,3 +1,4 @@
 ---
 role:
   - roles::base
+  - profile_workstation

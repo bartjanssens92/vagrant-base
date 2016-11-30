@@ -22,6 +22,6 @@
 # - ssh config -> git repo ?
 
 class profile_workstation () {
-  include ::gnome
+  #include ::gnome
   #include ::applications
 }
