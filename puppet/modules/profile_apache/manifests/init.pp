@@ -36,7 +36,7 @@ class profile_apache (
     sendfile               => 'On',
     error_documents        => false,
     timeout                => '120',
-    vhost_dir              => '/etc/httpd/vhosts',
+    vhost_dir              => '/etc/httpd/vhosts.d',
     rewrite_lock           => undef,
     manage_user            => true,
     manage_group           => true,
@@ -49,6 +49,9 @@ class profile_apache (
     package_ensure         => 'installed',
     root_directory_secured => false,
   }
+
+  # Include mod::proxy
+  include ::apache::mod::proxy
 
   # Create the 'top' docroot
   file { $docroot:
