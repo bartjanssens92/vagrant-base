@@ -20,3 +20,16 @@ profile_apache::vhosts:
     docroot: /var/vhosts/bbqnetwork.be
     port: 80
     default_vhost: true
+  tipboard.internal.bbqnetwork.be:
+    servername: tipboard.internal.bbqnetwork.be
+    docroot: /var/vhosts/bbqnetwork.be
+    port: 80
+    default_vhost: false
+    proxy_pass:
+      - /communication/websocket:
+        path: /communication/websocket
+        url: ws://localhost:7272/communication/websocket
+      - /:
+        path: /
+        url: http://localhost:7272/
+
