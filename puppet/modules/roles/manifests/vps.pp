@@ -8,7 +8,7 @@ class roles::vps () {
   include ::profile_base
   include ::profile_apache
   include ::profile_openvpn
-  include ::tipboard
+  include ::profile_tipboard
 
 } # class roles::vps
 
