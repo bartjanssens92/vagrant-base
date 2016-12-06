@@ -1,0 +1,13 @@
+[Unit]
+Description=Tipboard customizable dashboard
+After=network.target
+
+[Service]
+ExecStart=<%= @tipboard_home %>/bin/tipboard runserver
+Type=simple
+User=<%= @tipboard_user %>
+Group=<%= @tipboard_group %>
+
+[Install]
+WantedBy=multi-user.target
+
