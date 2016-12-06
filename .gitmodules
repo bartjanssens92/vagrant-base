@@ -34,6 +34,3 @@
 [submodule "puppet/modules/apache"]
 	path = puppet/modules/apache
 	url = https://github.com/bartjanssens92/puppetlabs-apache.git
-[submodule "puppet/modules/python"]
-	path = puppet/modules/python
-	url = https://github.com/bartjanssens92/puppet-python.git
