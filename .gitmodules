@@ -36,4 +36,4 @@
 	url = https://github.com/bartjanssens92/puppetlabs-apache.git
 [submodule "puppet/modules/redis"]
 	path = puppet/modules/redis
-	url = https://github.com/bartjanssens92/puppet-redis.git
+	url = https://github.com/arioch/puppet-redis.git
