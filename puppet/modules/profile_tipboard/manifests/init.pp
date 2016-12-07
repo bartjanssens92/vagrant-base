@@ -7,6 +7,8 @@ class profile_tipboard (
   $tipboard_home = '/opt/tipboard',
 ) {
 
+  include ::redis
+
   # Create the tipboard user and group
   group { $tipboard_group:
     ensure => present,
