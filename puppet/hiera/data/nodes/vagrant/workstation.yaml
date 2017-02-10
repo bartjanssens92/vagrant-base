@@ -1,3 +1,9 @@
 ---
 role:
   - roles::workstation
+
+profile_graphicalenv::tools:
+  pidgin: {}
+  terminator:
+    configfile: /home/vagrant/.config/terminator/config
+
