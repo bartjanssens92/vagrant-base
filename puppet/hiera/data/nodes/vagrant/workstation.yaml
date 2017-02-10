@@ -3,7 +3,15 @@ role:
   - roles::workstation
 
 profile_graphicalenv::tools:
-  pidgin: {}
+  remmina:
+    package:
+      remmina
+      remmina-plugin-rdesktop
   terminator:
     configfile: /home/vagrant/.config/terminator/config
+  chromium: {}
+  keepass: {}
+  libreoffice: {}
+  pidgin: {}
+  spotify: {}
 

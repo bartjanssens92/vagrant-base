@@ -4,6 +4,7 @@
 class profile_graphicalenv (
   $environment = 'i3',
   $user = 'vagrant',
+  $group = 'vagrant',
   $tools = {}
 ) {
   # According to the environment, include the correct subclass

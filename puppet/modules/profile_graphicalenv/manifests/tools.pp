@@ -13,7 +13,6 @@ define profile_graphicalenv::tools (
   $toolname   = $title,
   $package    = $title, # Default to title name as package name
   $configfile = undef,
-  $template   = undef,
   $ensure     = 'present',
 ) {
   # Install the needed package
@@ -29,6 +28,8 @@ define profile_graphicalenv::tools (
       path    => '/usr/bin:/usr/sbin:/bin',
       command => "mkdir -p $( dirname $configfile )",
       unless  => "test -d $( dirname $configfile )",
+      user    => $::profile_graphicalenv::user,
+      group   => $::profile_graphicalenv::group,
     }
 
     # If there is a template, make sure the configfile has that content
@@ -37,6 +38,7 @@ define profile_graphicalenv::tools (
       ensure  => file,
       content => template("profile_graphicalenv/tools/$toolname.erb"),
       owner   => $::profile_graphicalenv::user,
+      group   => $::profile_graphicalenv::group,
     }
 
   } # if $configfile
