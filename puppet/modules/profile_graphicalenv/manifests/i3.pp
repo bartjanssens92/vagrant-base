@@ -20,7 +20,8 @@ class profile_graphicalenv::i3 (
   class { '::profile_graphicalenv::xorg::xinit':
     user     => 'vagrant',
     require  => File[$logdir],
-    to_start => 'xscreensaver &
+    to_start => '#xrandr --output VGA-1 --mode 1920x1080
+xscreensaver &
 xsetroot -cursor_name left_ptr &
 exec i3 -V >> /var/log/i3log/i3log-$(date +\'%F-%k-%M-%S\') 2>&1',
   }

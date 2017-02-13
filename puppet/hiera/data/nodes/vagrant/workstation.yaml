@@ -19,6 +19,8 @@ profile_graphicalenv::tools:
       remmina-plugin-rdesktop
   spotify:
     uglyyaourt: True
+  i3lock-wrapper:
+    uglyyaourt: True
   # Also needs a shell to be installed as it uses tput to get information
   # tput: terminal attributes: No such device or address
   libreoffice:

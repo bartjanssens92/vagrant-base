@@ -21,4 +21,4 @@ class profile_graphicalenv::i3::install (
   package { $extra:
     ensure => present,
   }
-} # class profile_graphicalenv::i3::install
+} # class profile_graphicalenv::i3::instal
