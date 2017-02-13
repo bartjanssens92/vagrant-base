@@ -1,5 +1,6 @@
+# Class profile_graphicalenv::deepin::install
 #
-#
+# Private class to install all the deepin packages.
 #
 class profile_graphicalenv::deepin::install (
   $packages = [
@@ -9,5 +10,5 @@ class profile_graphicalenv::deepin::install (
   package { $packages:
     ensure => present,
   }
-}
+} # class profile_graphicalenv::deepin::install
 

@@ -1,5 +1,30 @@
+# Class profile_graphicalenv
 #
+# Mainly a wrapper class to load some params and
+# call the correct sub classes.
 #
+# Parameters:
+#
+#   environment:
+#     Used to pick the graphical environment.
+#     Defaults to: i3
+#     Example:
+#       profile_graphicalenv::environment: gnome
+#
+#   user:
+#     The user to set the configuration files for.
+#     This one is also used to execute the uglyyaourt exec in tools.pp
+#     Default to: vagrant
+#
+#   group:
+#     The group to set the configuration files for.
+#     This one is also used to execute the uglyyaourt exec in tools.pp
+#     Default to: vagrant
+#
+#   tools:
+#     Hash to pass what tools are desired on the box.
+#     These are mostly graphical tools.
+#     For more info on how the hash needs to be used look in tools.pp
 #
 class profile_graphicalenv (
   $environment = 'i3',
@@ -16,6 +41,4 @@ class profile_graphicalenv (
   }
   # Setup the tools specified
   create_resources( ::profile_graphicalenv::tools, $tools )
-}
-
-
+} # class profile_graphicalenv

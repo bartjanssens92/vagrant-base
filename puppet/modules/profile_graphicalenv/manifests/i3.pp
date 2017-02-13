@@ -1,5 +1,7 @@
+# Class profile_graphicalenv::i3
 #
-#
+# Main class to include all the dependencies
+# for i3 to be up and running.
 #
 class profile_graphicalenv::i3 (
   $logdir = '/var/log/i3log',
@@ -22,4 +24,4 @@ class profile_graphicalenv::i3 (
 xsetroot -cursor_name left_ptr &
 exec i3 -V >> /var/log/i3log/i3log-$(date +\'%F-%k-%M-%S\') 2>&1',
   }
-}
+} # class profile_graphicalenv::i3

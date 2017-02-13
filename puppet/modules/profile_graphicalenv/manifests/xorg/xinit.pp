@@ -1,5 +1,9 @@
+# Class profile_graphicalenv::xorg::xinit
 #
+# Private class to setup the xinitrc script in the users homedir.
 #
+# TO DO:
+#  * Write a better template for the xinitrc file
 #
 class profile_graphicalenv::xorg::xinit (
   $to_start,
@@ -17,4 +21,4 @@ class profile_graphicalenv::xorg::xinit (
     mode    => '0744',
     content => template('profile_graphicalenv/xorg/xinitrc.erb'),
   }
-}
+} # class profile_graphicalenv::xorg::xinit
