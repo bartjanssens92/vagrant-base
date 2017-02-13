@@ -3,15 +3,27 @@ role:
   - roles::workstation
 
 profile_graphicalenv::tools:
-  remmina:
-    package:
-      remmina
-      remmina-plugin-rdesktop
   terminator:
     configfile: /home/vagrant/.config/terminator/config
   chromium: {}
   keepass: {}
-  libreoffice: {}
   pidgin: {}
-  spotify: {}
+  # The packages below have the 'root' issue when building
+  # ==> workstation: ==> ERROR: Running makepkg as root is not allowed as it can cause permanent,
+  # ==> workstation: catastrophic damage to your system.
+  # That why there is an ugly exec here
+  remmina:
+    uglyyaourt: True
+    package:
+      remmina
+      remmina-plugin-rdesktop
+  spotify:
+    uglyyaourt: True
+  # Also needs a shell to be installed as it uses tput to get information
+  # tput: terminal attributes: No such device or address
+  libreoffice:
+    uglyyaourt: True
+    package:
+      libreoffice-fresh
+      libreoffice-fresh-nl # Dutch language pack for LibreOffice Fresh
 
