@@ -6,7 +6,6 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
-  #config.vm.box = "arch-amd64-virtualbox"
   config.vm.box = "arch-amd64-virtualbox"
   config.vm.box_url = "https://boxes.bbqnetwork.be/arch-amd64-virtualbox"
   config.ssh.insert_key = false
@@ -27,11 +26,6 @@ Vagrant.configure(2) do |config|
   end
 
   config.vm.provision "puppet" do |puppet|
-    #puppet.hiera_config_path = "puppet/hiera/hiera.yaml"
-    #puppet.manifest_file = ""
-    #puppet.manifests_path = ["vms", "puppet/manifests/"]
-    #puppet.module_path = "puppet/modules"
-    #puppet.options = "--environment 'vagrant'"
     puppet.environment = "vagrant"
     puppet.environment_path = ["vm", "/etc/puppetlabs/code/environments"]
     #puppet.options = "--debug"
@@ -56,16 +50,7 @@ Vagrant.configure(2) do |config|
     node.vm.network "private_network", ip: "10.10.30.10"
     node.vm.network "forwarded_port", guest: 80, host: 3080
     node.vm.network "forwarded_port", guest: 443, host: 3080
-    node.vm.network "forwarded_port", guest: 7272, host: 7272
     config.vm.synced_folder "files/vps", "/home/vagrant/vps"
-  end
-
-  config.vm.define "hornetmq" do |node|
-    node.vm.hostname = "hornetmq"
-    node.vm.network "private_network", ip: "10.10.20.12"
-    node.vm.network "forwarded_port", guest: 80, host: 20128
-    node.vm.network "forwarded_port", guest: 443, host: 20124
-    config.vm.synced_folder "files/hornetmq", "/home/vagrant/hornetmq"
   end
 
   config.vm.define "lamp" do |node|
