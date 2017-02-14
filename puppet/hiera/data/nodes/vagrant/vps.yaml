@@ -5,6 +5,9 @@ role:
 # enable firewall
 profile_base::enable_firewall: true
 
+# Get tipboard from github
+profile_tipboard::github_url: https://github.com/allegro/tipboard/archive/develop.zip
+
 ##########
 # Apache #
 ##########

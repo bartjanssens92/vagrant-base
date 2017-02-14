@@ -5,6 +5,7 @@ class profile_tipboard (
   $tipboard_user = 'tipboard',
   $tipboard_group = 'tipboard',
   $tipboard_home = '/opt/tipboard',
+  $github_url = undef,
 ) {
 
   include ::redis
@@ -65,7 +66,7 @@ class profile_tipboard (
 
   $dashboard_name = 'testing'
   # Exec to setup the virualenv in the tipboard users home
-  exec { "tipboard-$python_virtualenv":
+  exec { "tipboard-$dashboard_name":
     command => "su - $tipboard_user -c '$virtualenvcmd $tipboard_home'",
     unless  => "test -f ${tipboard_home}/${virtualenv_source}",
     require => [
@@ -75,10 +76,18 @@ class profile_tipboard (
   }
 
   # Exec to pip install tipboard
-  exec { 'tipboard-setup':
-    command => "su - $tipboard_user -c 'source ${tipboard_home}/${virtualenv_source} && ${tipboard_home}/bin/pip install tipboard'",
-    unless  => "test -f ${tipboard_home}/bin/tipboard",
-    require => Exec["tipboard-$python_virtualenv"],
+  if $github_url {
+    exec { 'tipboard-setup':
+      command => "su - $tipboard_user -c 'source ${tipboard_home}/${virtualenv_source} && ${tipboard_home}/bin/pip install -I ${github_url}'",
+      unless  => "test -f ${tipboard_home}/bin/tipboard",
+      require => Exec["tipboard-$dashboard_name"],
+    }
+  } else {
+    exec { 'tipboard-setup':
+      command => "su - $tipboard_user -c 'source ${tipboard_home}/${virtualenv_source} && ${tipboard_home}/bin/pip install tipboard'",
+      unless  => "test -f ${tipboard_home}/bin/tipboard",
+      require => Exec["tipboard-$dashboard_name"],
+    }
   }
 
   # Exec to initialize tipboard
