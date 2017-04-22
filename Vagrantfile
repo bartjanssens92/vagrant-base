@@ -6,13 +6,16 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
-  config.vm.box = "arch-amd64-virtualbox"
-  config.vm.box_url = "https://boxes.bbqnetwork.be/arch-amd64-virtualbox"
+  #config.vm.box = "arch-amd64-virtualbox"
+  #config.vm.box = "centos-7-3-amd64-virtualbox"
+  config.vm.box = "arch-amd64-libvirt"
+  #config.vm.box_url = "https://boxes.bbqnetwork.be/arch-amd64-virtualbox"
+  #config.vm.box_url = "http://boxes.internal.bbqnetwork.be/centos-7-3-amd64-virtualbox"
   config.ssh.insert_key = false
   # config.vm.box_check_update = false
   config.vm.synced_folder "puppet/manifests", "/etc/puppetlabs/code/environments/vagrant/manifests"
   config.vm.synced_folder "puppet/modules", "/etc/puppetlabs/code/environments/vagrant/modules"
-  config.vm.synced_folder "puppet/hiera", "/etc/puppetlabs/puppet"
+  config.vm.synced_folder "puppet/hiera/data", "/etc/puppetlabs/puppet/data"
 
   config.vm.provider "virtualbox" do |vb|
     #vb.gui = true
@@ -20,8 +23,8 @@ Vagrant.configure(2) do |config|
     vb.customize ["modifyvm", :id, "--cpus", "2"]
     vb.customize ["modifyvm", :id, "--usb", "off"]
     vb.customize ["modifyvm", :id, "--usbehci", "off"]
-    vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
-    vb.customize ["modifyvm", :id, "--nictype2", "virtio"]
+    #vb.customize ["modifyvm", :id, "--nictype1", "virtio"]
+    #vb.customize ["modifyvm", :id, "--nictype2", "virtio"]
     # vboxmanage createmedium disk --filename /tmp/lvm_1.vdi --size 1024
   end
 
