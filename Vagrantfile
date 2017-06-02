@@ -6,16 +6,14 @@
 # backwards compatibility). Please don't change it unless you know what
 # you're doing.
 Vagrant.configure(2) do |config|
-  #config.vm.box = "arch-amd64-virtualbox"
+  config.vm.box = "arch-amd64-virtualbox"
   #config.vm.box = "centos-7-3-amd64-virtualbox"
-  config.vm.box = "arch-amd64-libvirt"
-  #config.vm.box_url = "https://boxes.bbqnetwork.be/arch-amd64-virtualbox"
+  #config.vm.box = "arch-amd64-libvirt"
+  config.vm.box_url = "https://boxes.bbqnetwork.be/arch-amd64-virtualbox"
   #config.vm.box_url = "http://boxes.internal.bbqnetwork.be/centos-7-3-amd64-virtualbox"
   config.ssh.insert_key = false
   # config.vm.box_check_update = false
-  config.vm.synced_folder "puppet/manifests", "/etc/puppetlabs/code/environments/vagrant/manifests"
-  config.vm.synced_folder "puppet/modules", "/etc/puppetlabs/code/environments/vagrant/modules"
-  config.vm.synced_folder "puppet/hiera/data", "/etc/puppetlabs/puppet/data"
+  config.vm.synced_folder "puppet", "/etc/puppetlabs/code"
 
   config.vm.provider "virtualbox" do |vb|
     #vb.gui = true
@@ -32,7 +30,6 @@ Vagrant.configure(2) do |config|
     puppet.environment = "vagrant"
     puppet.environment_path = ["vm", "/etc/puppetlabs/code/environments"]
     #puppet.options = "--debug"
-    puppet.environment = "vagrant"
   end
 
   # Node port forwarding:
@@ -56,18 +53,24 @@ Vagrant.configure(2) do |config|
     config.vm.synced_folder "files/vps", "/home/vagrant/vps"
   end
 
-  config.vm.define "lamp" do |node|
-    node.vm.hostname = "lamp"
-    node.vm.network "private_network", ip: "10.10.20.13"
-    node.vm.network "forwarded_port", guest: 80, host: 20108
-    node.vm.network "forwarded_port", guest: 443, host: 20104
-    config.vm.synced_folder "files/lamp", "/home/vagrant/lamp"
-  end
-
   config.vm.define "workstation" do |node|
     node.vm.hostname = "workstation"
     node.vm.network "private_network", ip: "10.10.20.14"
     config.vm.synced_folder "files/workstation", "/home/vagrant/workstation"
+  end
+
+  config.vm.define "puppetaoi01" do |node|
+    node.vm.hostname = "puppetaoi01"
+    node.vm.network "private_network", ip: "10.10.30.15"
+    config.vm.synced_folder "files/puppetaoi01", "/home/vagrant/puppetaoi01"
+  end
+
+  config.vm.define "buildhost" do |node|
+    node.vm.hostname = "buildhost"
+    node.vm.network "private_network", ip: "10.10.20.14"
+    node.vm.network "forwarded_port", guest: 80, host: 3080
+    node.vm.network "forwarded_port", guest: 443, host: 3080
+    config.vm.synced_folder "files/buildhost", "/home/vagrant/buildhost"
   end
 
 end

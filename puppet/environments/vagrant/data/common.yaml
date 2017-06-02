@@ -1,0 +1,19 @@
+---
+role:
+  - roles::base
+
+# Vagrant user
+users:
+  vagrant:
+    managehome: true
+    pwhash: '$1$conrI2hS$4R8LvrMZShX0BaJxP2/sS.' #vagrant
+
+# Vagrant user sudo config
+sudo::configs:
+  vagrant:
+    content: "%vagrant ALL=(ALL) NOPASSWD: ALL"
+    priority: 10
+
+# Ignore the firewall here
+profile_base::enable_firewall: false
+
