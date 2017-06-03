@@ -36,7 +36,7 @@ Vagrant.configure(2) do |config|
   # Use the last 2 cypers of the ip addr and then the port number
   config.vm.define "base" do |node|
     node.vm.hostname = "base"
-    node.vm.network "private_network", ip: "10.10.20.10"
+    node.vm.network "private_network", ip: "10.10.20.10", auto_config: false
     node.vm.network "forwarded_port", guest: 80, host: 1080
     config.vm.synced_folder "files/base", "/home/vagrant/base"
     config.vm.provider "virtualbox" do |vb|

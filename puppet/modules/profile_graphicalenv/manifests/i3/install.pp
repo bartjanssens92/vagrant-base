@@ -5,9 +5,10 @@
 # And some extra packages to make life more confortable.
 #
 class profile_graphicalenv::i3::install (
-  $packages = ['i3-wm','i3lock','i3status'],
-  $fonts    = ['adobe-source-code-pro-fonts'],
-  $extra    = ['dmenu', 'feh'],
+  $packages        = ['i3-wm','i3lock','i3status'],
+  $fonts           = ['adobe-source-code-pro-fonts'],
+  $display_manager = ['xdm'],
+  $extra           = ['dmenu', 'feh', 'xorg-xdm'],
 ) {
   package { $packages:
     ensure => present,
@@ -20,5 +21,10 @@ class profile_graphicalenv::i3::install (
   # extra packages that are nice to have
   package { $extra:
     ensure => present,
+  }
+  # Enable the login service
+  service { $display_manager:
+    ensure => running,
+    enable => true,
   }
 } # class profile_graphicalenv::i3::instal
